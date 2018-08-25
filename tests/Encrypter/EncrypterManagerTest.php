@@ -43,7 +43,7 @@ class EncrypterManagerTest extends TestCase
     }
 
     /**
-     * @covers \Spiral\Encrypter\EncrypterManager::generateKey()
+     * @covers \Spiral\Encrypter\EncrypterManager::generateKey
      */
     public function testGenerateKey()
     {

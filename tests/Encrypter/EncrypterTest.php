@@ -26,7 +26,7 @@ class EncryptionTest extends TestCase
     }
 
     /**
-     * @covers \Spiral\Encrypter\Encrypter::encrypt()
+     * @covers \Spiral\Encrypter\Encrypter::encrypt
      */
     public function testEncryption()
     {
