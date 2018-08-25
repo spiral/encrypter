@@ -5,6 +5,7 @@
  * @license   MIT
  * @author    Anton Titov (Wolfy-J)
  */
+
 namespace Spiral\Encrypter;
 
 use Spiral\Encrypter\Exceptions\DecryptException;
@@ -12,7 +13,7 @@ use Spiral\Encrypter\Exceptions\EncrypterException;
 use Spiral\Encrypter\Exceptions\EncryptException;
 
 /**
- * Immutable class reponsible for encryption services.
+ * Immutable class responsible for encryption services.
  */
 interface EncrypterInterface
 {
