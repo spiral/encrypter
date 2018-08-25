@@ -42,6 +42,9 @@ class EncrypterManagerTest extends TestCase
         $this->assertSame($key, $encrypter->getKey());
     }
 
+    /**
+     * @covers \Spiral\Encrypter\EncrypterManager::generateKey()
+     */
     public function testGenerateKey()
     {
         $key = Key::CreateNewRandomKey()->saveToAsciiSafeString();
