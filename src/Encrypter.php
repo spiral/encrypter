@@ -46,7 +46,11 @@ class Encrypter implements EncrypterInterface, InjectableInterface
     public function withKey(string $key): EncrypterInterface
     {
         $encrypter = clone $this;
-        $encrypter->key = Key::loadFromAsciiSafeString($key);
+        try {
+            $encrypter->key = Key::loadFromAsciiSafeString($key);
+        } catch (CryptoException $e) {
+            throw new EncrypterException($e->getMessage(), $e->getCode(), $e);
+        }
 
         return $encrypter;
     }

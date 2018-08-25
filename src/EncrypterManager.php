@@ -8,7 +8,6 @@
 
 namespace Spiral\Encrypter;
 
-use Defuse\Crypto\Exception\BadFormatException;
 use Defuse\Crypto\Exception\CryptoException;
 use Defuse\Crypto\Key;
 use Spiral\Core\Container\InjectorInterface;
@@ -54,10 +53,6 @@ class EncrypterManager implements InjectorInterface, SingletonInterface
      */
     public function createInjection(\ReflectionClass $class, string $context = null)
     {
-        try {
-            return $class->newInstance(base64_decode($this->config->getKey()));
-        } catch (BadFormatException $e) {
-            throw new EncrypterException("Invalid encryption key", $e->getCode(), $e);
-        }
+        return $class->newInstance(base64_decode($this->config->getKey()));
     }
 }

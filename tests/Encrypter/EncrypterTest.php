@@ -25,6 +25,9 @@ class EncryptionTest extends TestCase
         $this->assertEquals($keyB, $new->getKey());
     }
 
+    /**
+     * @covers \Spiral\Encrypter\Encrypter::encrypt()
+     */
     public function testEncryption()
     {
         $encrypter = new Encrypter(Key::CreateNewRandomKey()->saveToAsciiSafeString());
@@ -56,5 +59,22 @@ class EncryptionTest extends TestCase
         $this->assertEquals('test string', $encrypter->decrypt($encrypted));
 
         $encrypter->decrypt('badData.' . $encrypted);
+    }
+
+    /**
+     * @expectedException \Spiral\Encrypter\Exceptions\EncrypterException
+     */
+    public function testBadKey()
+    {
+        $encrypter = new Encrypter('bad-key');
+    }
+
+    /**
+     * @expectedException \Spiral\Encrypter\Exceptions\EncrypterException
+     */
+    public function testBadWithKey()
+    {
+        $encrypter = new Encrypter(Key::CreateNewRandomKey()->saveToAsciiSafeString());
+        $encrypter = $encrypter->withKey('bad-key');
     }
 }

@@ -14,8 +14,9 @@ use Spiral\Core\Container;
 use Spiral\Encrypter\Configs\EncrypterConfig;
 use Spiral\Encrypter\Encrypter;
 use Spiral\Encrypter\EncrypterInterface;
+use Spiral\Encrypter\EncrypterManager;
 
-class ComponentTest extends TestCase
+class EncrypterManagerTest extends TestCase
 {
     public function testInjection()
     {
@@ -39,5 +40,16 @@ class ComponentTest extends TestCase
 
         $encrypter = $container->get(EncrypterInterface::class);
         $this->assertSame($key, $encrypter->getKey());
+    }
+
+    public function testGenerateKey()
+    {
+        $key = Key::CreateNewRandomKey()->saveToAsciiSafeString();
+
+        $manager = new EncrypterManager(new EncrypterConfig([
+            'key' => $key
+        ]));
+
+        $this->assertNotSame($key, $manager->generateKey());
     }
 }
