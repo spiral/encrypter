@@ -23,7 +23,7 @@ use Spiral\Encrypter\Exceptions\EncryptException;
  */
 class Encrypter implements EncrypterInterface, InjectableInterface
 {
-    const INJECTOR = EncrypterManager::class;
+    const INJECTOR = EncrypterFactory::class;
 
     /** @var Key */
     private $key = null;

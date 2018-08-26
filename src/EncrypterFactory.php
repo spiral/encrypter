@@ -18,7 +18,7 @@ use Spiral\Encrypter\Exceptions\EncrypterException;
 /**
  * Only manages encrypter injections (factory).
  */
-class EncrypterManager implements InjectorInterface, SingletonInterface
+class EncrypterFactory implements InjectorInterface, SingletonInterface
 {
     /**
      * @var EncrypterConfig
@@ -36,6 +36,7 @@ class EncrypterManager implements InjectorInterface, SingletonInterface
     /**
      * Generate new random encryption key (binary format).
      *
+     * @codeCoverageIgnore
      * @return string
      * @throws EncrypterException
      */

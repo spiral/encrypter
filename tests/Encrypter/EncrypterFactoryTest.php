@@ -14,9 +14,9 @@ use Spiral\Core\Container;
 use Spiral\Encrypter\Configs\EncrypterConfig;
 use Spiral\Encrypter\Encrypter;
 use Spiral\Encrypter\EncrypterInterface;
-use Spiral\Encrypter\EncrypterManager;
+use Spiral\Encrypter\EncrypterFactory;
 
-class EncrypterManagerTest extends TestCase
+class EncrypterFactoryTest extends TestCase
 {
     public function testInjection()
     {
@@ -43,13 +43,13 @@ class EncrypterManagerTest extends TestCase
     }
 
     /**
-     * @covers \Spiral\Encrypter\EncrypterManager::generateKey
+     * @covers \Spiral\Encrypter\EncrypterFactory::generateKey
      */
     public function testGenerateKey()
     {
         $key = Key::CreateNewRandomKey()->saveToAsciiSafeString();
 
-        $manager = new EncrypterManager(new EncrypterConfig([
+        $manager = new EncrypterFactory(new EncrypterConfig([
             'key' => $key
         ]));
 
