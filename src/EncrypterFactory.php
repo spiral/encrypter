@@ -51,6 +51,12 @@ class EncrypterFactory implements InjectorInterface, EncryptionInterface, Single
      */
     public function getKey(): string
     {
+        try {
+            Key::loadFromAsciiSafeString($this->config->getKey());
+        } catch (CryptoException $e) {
+            throw new EncrypterException($e->getMessage(), $e->getCode(), $e);
+        }
+
         return $this->config->getKey();
     }
 
@@ -59,7 +65,7 @@ class EncrypterFactory implements InjectorInterface, EncryptionInterface, Single
      */
     public function getEncrypter(): EncrypterInterface
     {
-        return new Encrypter($this->config->getKey());
+        return new Encrypter($this->getKey());
     }
 
     /**

@@ -73,6 +73,17 @@ class EncrypterFactoryTest extends TestCase
     }
 
     /**
+     * @expectedException \Spiral\Encrypter\Exceptions\EncrypterException
+     */
+    public function testExceptionKey()
+    {
+        $config = new EncrypterConfig([]);
+
+        $factory = new EncrypterFactory($config);
+        echo $factory->getKey();
+    }
+
+    /**
      * @covers \Spiral\Encrypter\EncrypterFactory::generateKey
      */
     public function testGenerateKey()
