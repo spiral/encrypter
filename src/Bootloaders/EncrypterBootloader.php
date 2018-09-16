@@ -12,11 +12,12 @@ use Spiral\Core\Bootloaders\Bootloader;
 use Spiral\Encrypter\Encrypter;
 use Spiral\Encrypter\EncrypterFactory;
 use Spiral\Encrypter\EncrypterInterface;
+use Spiral\Encrypter\EncryptionInterface;
 
 class EncrypterBootloader extends Bootloader
 {
     const BINDINGS = [
-        EncrypterInterface::class => EncrypterFactory::class,
-        EncrypterInterface::class => Encrypter::class
+        EncryptionInterface::class => EncrypterFactory::class,
+        EncrypterInterface::class  => Encrypter::class
     ];
 }
