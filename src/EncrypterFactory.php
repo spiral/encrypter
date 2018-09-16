@@ -18,7 +18,7 @@ use Spiral\Encrypter\Exceptions\EncrypterException;
 /**
  * Only manages encrypter injections (factory).
  */
-class EncrypterFactory implements InjectorInterface, SingletonInterface
+class EncrypterFactory implements InjectorInterface, EncryptionInterface, SingletonInterface
 {
     /**
      * @var EncrypterConfig
@@ -34,11 +34,8 @@ class EncrypterFactory implements InjectorInterface, SingletonInterface
     }
 
     /**
-     * Generate new random encryption key (binary format).
-     *
+     * @inheritdoc
      * @codeCoverageIgnore
-     * @return string
-     * @throws EncrypterException
      */
     public function generateKey(): string
     {
@@ -50,10 +47,26 @@ class EncrypterFactory implements InjectorInterface, SingletonInterface
     }
 
     /**
+     * @inheritdoc
+     */
+    public function getKey(): string
+    {
+        return $this->config->getKey();
+    }
+
+    /**
+     * @return EncrypterInterface
+     */
+    public function getEncrypter(): EncrypterInterface
+    {
+        return new Encrypter($this->config->getKey());
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function createInjection(\ReflectionClass $class, string $context = null)
     {
-        return $class->newInstance(base64_decode($this->config->getKey()));
+        return $this->getEncrypter();
     }
 }

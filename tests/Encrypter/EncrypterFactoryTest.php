@@ -13,8 +13,9 @@ use PHPUnit\Framework\TestCase;
 use Spiral\Core\Container;
 use Spiral\Encrypter\Configs\EncrypterConfig;
 use Spiral\Encrypter\Encrypter;
-use Spiral\Encrypter\EncrypterInterface;
 use Spiral\Encrypter\EncrypterFactory;
+use Spiral\Encrypter\EncrypterInterface;
+use Spiral\Encrypter\EncryptionInterface;
 
 class EncrypterFactoryTest extends TestCase
 {
@@ -28,7 +29,7 @@ class EncrypterFactoryTest extends TestCase
         //Manager must be created automatically
         $container->bind(
             EncrypterConfig::class,
-            new EncrypterConfig(['key' => base64_encode($key)])
+            new EncrypterConfig(['key' => $key])
         );
 
         $this->assertInstanceOf(
@@ -40,6 +41,35 @@ class EncrypterFactoryTest extends TestCase
 
         $encrypter = $container->get(EncrypterInterface::class);
         $this->assertSame($key, $encrypter->getKey());
+    }
+
+    public function testGetEncrypter()
+    {
+        $key = Key::CreateNewRandomKey()->saveToAsciiSafeString();
+
+        $container = new Container();
+        $container->bind(EncrypterInterface::class, Encrypter::class);
+        $container->bind(EncryptionInterface::class, EncrypterFactory::class);
+
+        //Manager must be created automatically
+        $container->bind(
+            EncrypterConfig::class,
+            new EncrypterConfig(['key' => $key])
+        );
+
+        $this->assertInstanceOf(
+            EncryptionInterface::class,
+            $container->get(EncryptionInterface::class)
+        );
+
+        $this->assertInstanceOf(
+            EncrypterFactory::class,
+            $container->get(EncryptionInterface::class)
+        );
+
+        $encrypter = $container->get(EncryptionInterface::class)->getEncrypter();
+        $this->assertSame($key, $encrypter->getKey());
+        $this->assertSame($key, $container->get(EncryptionInterface::class)->getKey());
     }
 
     /**
