@@ -9,7 +9,7 @@
 namespace Spiral\Encrypter\Tests;
 
 use PHPUnit\Framework\TestCase;
-use Spiral\Encrypter\Configs\EncrypterConfig;
+use Spiral\Encrypter\Config\EncrypterConfig;
 
 class ConfigTest extends TestCase
 {

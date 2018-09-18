@@ -8,7 +8,7 @@
 
 namespace Spiral\Encrypter;
 
-use Spiral\Encrypter\Exceptions\EncrypterException;
+use Spiral\Encrypter\Exception\EncrypterException;
 
 interface EncryptionInterface
 {

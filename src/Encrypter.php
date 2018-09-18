@@ -12,9 +12,9 @@ use Defuse\Crypto\Crypto;
 use Defuse\Crypto\Exception\CryptoException;
 use Defuse\Crypto\Key;
 use Spiral\Core\Container\InjectableInterface;
-use Spiral\Encrypter\Exceptions\DecryptException;
-use Spiral\Encrypter\Exceptions\EncrypterException;
-use Spiral\Encrypter\Exceptions\EncryptException;
+use Spiral\Encrypter\Exception\DecryptException;
+use Spiral\Encrypter\Exception\EncrypterException;
+use Spiral\Encrypter\Exception\EncryptException;
 
 /**
  * Default implementation of spiral encrypter. Facade at top of defuse/php-encryption

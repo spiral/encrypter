@@ -6,9 +6,9 @@
  * @author    Anton Titov (Wolfy-J)
  */
 
-namespace Spiral\Encrypter\Bootloaders;
+namespace Spiral\Encrypter\Bootloader;
 
-use Spiral\Core\Bootloaders\Bootloader;
+use Spiral\Core\Bootloader\Bootloader;
 use Spiral\Encrypter\Encrypter;
 use Spiral\Encrypter\EncrypterFactory;
 use Spiral\Encrypter\EncrypterInterface;

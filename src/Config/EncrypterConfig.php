@@ -6,7 +6,7 @@
  * @author  Anton Titov (Wolfy-J)
  */
 
-namespace Spiral\Encrypter\Configs;
+namespace Spiral\Encrypter\Config;
 
 use Spiral\Core\InjectableConfig;
 

@@ -11,7 +11,7 @@ namespace Spiral\Encrypter\Tests;
 use Defuse\Crypto\Key;
 use PHPUnit\Framework\TestCase;
 use Spiral\Core\Container;
-use Spiral\Encrypter\Configs\EncrypterConfig;
+use Spiral\Encrypter\Config\EncrypterConfig;
 use Spiral\Encrypter\Encrypter;
 use Spiral\Encrypter\EncrypterFactory;
 use Spiral\Encrypter\EncrypterInterface;
@@ -73,7 +73,7 @@ class EncrypterFactoryTest extends TestCase
     }
 
     /**
-     * @expectedException \Spiral\Encrypter\Exceptions\EncrypterException
+     * @expectedException \Spiral\Encrypter\Exception\EncrypterException
      */
     public function testExceptionKey()
     {

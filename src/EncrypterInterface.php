@@ -8,9 +8,9 @@
 
 namespace Spiral\Encrypter;
 
-use Spiral\Encrypter\Exceptions\DecryptException;
-use Spiral\Encrypter\Exceptions\EncrypterException;
-use Spiral\Encrypter\Exceptions\EncryptException;
+use Spiral\Encrypter\Exception\DecryptException;
+use Spiral\Encrypter\Exception\EncrypterException;
+use Spiral\Encrypter\Exception\EncryptException;
 
 /**
  * Immutable class responsible for encryption services.

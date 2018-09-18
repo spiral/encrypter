@@ -6,7 +6,7 @@
  * @author    Anton Titov (Wolfy-J)
  */
 
-namespace Spiral\Encrypter\Exceptions;
+namespace Spiral\Encrypter\Exception;
 
 /**
  * Error while data decryption.

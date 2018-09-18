@@ -48,7 +48,7 @@ class EncryptionTest extends TestCase
     }
 
     /**
-     * @expectedException \Spiral\Encrypter\Exceptions\DecryptException
+     * @expectedException \Spiral\Encrypter\Exception\DecryptException
      */
     public function testBadData()
     {
@@ -62,7 +62,7 @@ class EncryptionTest extends TestCase
     }
 
     /**
-     * @expectedException \Spiral\Encrypter\Exceptions\EncrypterException
+     * @expectedException \Spiral\Encrypter\Exception\EncrypterException
      */
     public function testBadKey()
     {
@@ -70,7 +70,7 @@ class EncryptionTest extends TestCase
     }
 
     /**
-     * @expectedException \Spiral\Encrypter\Exceptions\EncrypterException
+     * @expectedException \Spiral\Encrypter\Exception\EncrypterException
      */
     public function testBadWithKey()
     {

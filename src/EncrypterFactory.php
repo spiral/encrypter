@@ -12,8 +12,8 @@ use Defuse\Crypto\Exception\CryptoException;
 use Defuse\Crypto\Key;
 use Spiral\Core\Container\InjectorInterface;
 use Spiral\Core\Container\SingletonInterface;
-use Spiral\Encrypter\Configs\EncrypterConfig;
-use Spiral\Encrypter\Exceptions\EncrypterException;
+use Spiral\Encrypter\Config\EncrypterConfig;
+use Spiral\Encrypter\Exception\EncrypterException;
 
 /**
  * Only manages encrypter injections (factory).
