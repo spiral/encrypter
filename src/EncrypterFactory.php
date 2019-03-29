@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 /**
  * Spiral Framework.
  *
@@ -20,9 +20,7 @@ use Spiral\Encrypter\Exception\EncrypterException;
  */
 class EncrypterFactory implements InjectorInterface, EncryptionInterface, SingletonInterface
 {
-    /**
-     * @var EncrypterConfig
-     */
+    /** @var EncrypterConfig */
     protected $config = null;
 
     /**

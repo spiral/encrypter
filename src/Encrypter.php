@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 /**
  * Spiral Framework.
  *
@@ -10,6 +10,7 @@ namespace Spiral\Encrypter;
 
 use Defuse\Crypto\Crypto;
 use Defuse\Crypto\Exception\CryptoException;
+use Defuse\Crypto\Exception\EnvironmentIsBrokenException;
 use Defuse\Crypto\Key;
 use Spiral\Core\Container\InjectableInterface;
 use Spiral\Encrypter\Exception\DecryptException;
@@ -60,7 +61,11 @@ class Encrypter implements EncrypterInterface, InjectableInterface
      */
     public function getKey(): string
     {
-        return $this->key->saveToAsciiSafeString();
+        try {
+            return $this->key->saveToAsciiSafeString();
+        } catch (EnvironmentIsBrokenException $e) {
+            throw new EncrypterException($e->getMessage(), $e->getCode(), $e);
+        }
     }
 
     /**
