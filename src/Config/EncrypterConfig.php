@@ -1,10 +1,11 @@
-<?php declare(strict_types=1);
+<?php
 /**
  * Spiral Framework.
  *
- * @license MIT
- * @author  Anton Titov (Wolfy-J)
+ * @license   MIT
+ * @author    Anton Titov (Wolfy-J)
  */
+declare(strict_types=1);
 
 namespace Spiral\Encrypter\Config;
 
@@ -13,7 +14,7 @@ use Spiral\Core\InjectableConfig;
 /**
  * Encrypter configuration.
  */
-class EncrypterConfig extends InjectableConfig
+final class EncrypterConfig extends InjectableConfig
 {
     /**
      * Configuration section.

@@ -1,10 +1,11 @@
-<?php declare(strict_types=1);
+<?php
 /**
  * Spiral Framework.
  *
  * @license   MIT
  * @author    Anton Titov (Wolfy-J)
  */
+declare(strict_types=1);
 
 namespace Spiral\Encrypter;
 
@@ -18,7 +19,7 @@ use Spiral\Encrypter\Exception\EncrypterException;
 /**
  * Only manages encrypter injections (factory).
  */
-class EncrypterFactory implements InjectorInterface, EncryptionInterface, SingletonInterface
+final class EncrypterFactory implements InjectorInterface, EncryptionInterface, SingletonInterface
 {
     /** @var EncrypterConfig */
     protected $config = null;
