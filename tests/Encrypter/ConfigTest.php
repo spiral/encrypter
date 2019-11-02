@@ -1,10 +1,12 @@
 <?php
+
 /**
- * Spiral Framework.
+ * Spiral Framework, SpiralScout LLC.
  *
- * @license   MIT
  * @author    Anton Titov (Wolfy-J)
  */
+
+declare(strict_types=1);
 
 namespace Spiral\Encrypter\Tests;
 
@@ -13,7 +15,7 @@ use Spiral\Encrypter\Config\EncrypterConfig;
 
 class ConfigTest extends TestCase
 {
-    public function testKey()
+    public function testKey(): void
     {
         $config = new EncrypterConfig([
             'key' => 'abc'

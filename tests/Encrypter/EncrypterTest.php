@@ -1,10 +1,12 @@
 <?php
+
 /**
- * Spiral Framework.
+ * Spiral Framework, SpiralScout LLC.
  *
- * @license   MIT
  * @author    Anton Titov (Wolfy-J)
  */
+
+declare(strict_types=1);
 
 namespace Spiral\Encrypter\Tests;
 
@@ -14,7 +16,7 @@ use Spiral\Encrypter\Encrypter;
 
 class EncryptionTest extends TestCase
 {
-    public function testImmutable()
+    public function testImmutable(): void
     {
         $encrypter = new Encrypter($keyA = Key::CreateNewRandomKey()->saveToAsciiSafeString());
         $new = $encrypter->withKey($keyB = Key::CreateNewRandomKey()->saveToAsciiSafeString());
@@ -28,7 +30,7 @@ class EncryptionTest extends TestCase
     /**
      * @covers \Spiral\Encrypter\Encrypter::encrypt
      */
-    public function testEncryption()
+    public function testEncryption(): void
     {
         $encrypter = new Encrypter(Key::CreateNewRandomKey()->saveToAsciiSafeString());
 
@@ -50,7 +52,7 @@ class EncryptionTest extends TestCase
     /**
      * @expectedException \Spiral\Encrypter\Exception\DecryptException
      */
-    public function testBadData()
+    public function testBadData(): void
     {
         $encrypter = new Encrypter(Key::CreateNewRandomKey()->saveToAsciiSafeString());
 
@@ -64,7 +66,7 @@ class EncryptionTest extends TestCase
     /**
      * @expectedException \Spiral\Encrypter\Exception\EncrypterException
      */
-    public function testBadKey()
+    public function testBadKey(): void
     {
         $encrypter = new Encrypter('bad-key');
     }
@@ -72,7 +74,7 @@ class EncryptionTest extends TestCase
     /**
      * @expectedException \Spiral\Encrypter\Exception\EncrypterException
      */
-    public function testBadWithKey()
+    public function testBadWithKey(): void
     {
         $encrypter = new Encrypter(Key::CreateNewRandomKey()->saveToAsciiSafeString());
         $encrypter = $encrypter->withKey('bad-key');

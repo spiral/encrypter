@@ -1,10 +1,12 @@
 <?php
+
 /**
  * Spiral Framework.
  *
  * @license   MIT
  * @author    Anton Titov (Wolfy-J)
  */
+
 declare(strict_types=1);
 
 namespace Spiral\Encrypter;
@@ -25,7 +27,7 @@ use Spiral\Encrypter\Exception\EncryptException;
  */
 final class Encrypter implements EncrypterInterface, InjectableInterface
 {
-    const INJECTOR = EncrypterFactory::class;
+    public const INJECTOR = EncrypterFactory::class;
 
     /** @var Key */
     private $key = null;

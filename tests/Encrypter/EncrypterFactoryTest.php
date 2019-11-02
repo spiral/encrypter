@@ -1,10 +1,12 @@
 <?php
+
 /**
- * Spiral Framework.
+ * Spiral Framework, SpiralScout LLC.
  *
- * @license   MIT
  * @author    Anton Titov (Wolfy-J)
  */
+
+declare(strict_types=1);
 
 namespace Spiral\Encrypter\Tests;
 
@@ -19,7 +21,7 @@ use Spiral\Encrypter\EncryptionInterface;
 
 class EncrypterFactoryTest extends TestCase
 {
-    public function testInjection()
+    public function testInjection(): void
     {
         $key = Key::CreateNewRandomKey()->saveToAsciiSafeString();
 
@@ -43,7 +45,7 @@ class EncrypterFactoryTest extends TestCase
         $this->assertSame($key, $encrypter->getKey());
     }
 
-    public function testGetEncrypter()
+    public function testGetEncrypter(): void
     {
         $key = Key::CreateNewRandomKey()->saveToAsciiSafeString();
 
@@ -75,7 +77,7 @@ class EncrypterFactoryTest extends TestCase
     /**
      * @expectedException \Spiral\Encrypter\Exception\EncrypterException
      */
-    public function testExceptionKey()
+    public function testExceptionKey(): void
     {
         $config = new EncrypterConfig([]);
 
@@ -86,7 +88,7 @@ class EncrypterFactoryTest extends TestCase
     /**
      * @covers \Spiral\Encrypter\EncrypterFactory::generateKey
      */
-    public function testGenerateKey()
+    public function testGenerateKey(): void
     {
         $key = Key::CreateNewRandomKey()->saveToAsciiSafeString();
 
