@@ -1,12 +1,5 @@
 <?php
 
-/**
- * Spiral Framework.
- *
- * @license   MIT
- * @author    Anton Titov (Wolfy-J)
- */
-
 declare(strict_types=1);
 
 namespace Spiral\Encrypter\Config;
@@ -23,10 +16,7 @@ final class EncrypterConfig extends InjectableConfig
      */
     public const CONFIG = 'encrypter';
 
-    /**
-     * @var array
-     */
-    protected $config = [
+    protected array $config = [
         'key' => '',
     ];
 
