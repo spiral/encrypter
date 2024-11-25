@@ -10,7 +10,6 @@ use Spiral\Encrypter\Encrypter;
 use Spiral\Encrypter\Exception\DecryptException;
 use Spiral\Encrypter\Exception\EncrypterException;
 
-#[\PHPUnit\Framework\Attributes\CoversClass(\Spiral\Encrypter\Encrypter::class)]
 class EncrypterTest extends TestCase
 {
     public function testImmutable(): void
@@ -24,6 +23,9 @@ class EncrypterTest extends TestCase
         $this->assertEquals($keyB, $new->getKey());
     }
 
+    /**
+     * @covers \Spiral\Encrypter\Encrypter::encrypt
+     */
     public function testEncryption(): void
     {
         $encrypter = new Encrypter(Key::CreateNewRandomKey()->saveToAsciiSafeString());
