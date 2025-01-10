@@ -14,6 +14,7 @@ use Spiral\Encrypter\EncrypterInterface;
 use Spiral\Encrypter\EncryptionInterface;
 use Spiral\Encrypter\Exception\EncrypterException;
 
+#[\PHPUnit\Framework\Attributes\CoversClass(\Spiral\Encrypter\EncrypterFactory::class)]
 class EncrypterFactoryTest extends TestCase
 {
     public function testInjection(): void
@@ -29,15 +30,12 @@ class EncrypterFactoryTest extends TestCase
             new EncrypterConfig(['key' => $key])
         );
 
-        $this->assertInstanceOf(
-            EncrypterInterface::class,
-            $container->get(EncrypterInterface::class)
-        );
+        self::assertInstanceOf(EncrypterInterface::class, $container->get(EncrypterInterface::class));
 
-        $this->assertInstanceOf(Encrypter::class, $container->get(EncrypterInterface::class));
+        self::assertInstanceOf(Encrypter::class, $container->get(EncrypterInterface::class));
 
         $encrypter = $container->get(EncrypterInterface::class);
-        $this->assertSame($key, $encrypter->getKey());
+        self::assertSame($key, $encrypter->getKey());
     }
 
     public function testGetEncrypter(): void
@@ -54,19 +52,13 @@ class EncrypterFactoryTest extends TestCase
             new EncrypterConfig(['key' => $key])
         );
 
-        $this->assertInstanceOf(
-            EncryptionInterface::class,
-            $container->get(EncryptionInterface::class)
-        );
+        self::assertInstanceOf(EncryptionInterface::class, $container->get(EncryptionInterface::class));
 
-        $this->assertInstanceOf(
-            EncrypterFactory::class,
-            $container->get(EncryptionInterface::class)
-        );
+        self::assertInstanceOf(EncrypterFactory::class, $container->get(EncryptionInterface::class));
 
         $encrypter = $container->get(EncryptionInterface::class)->getEncrypter();
-        $this->assertSame($key, $encrypter->getKey());
-        $this->assertSame($key, $container->get(EncryptionInterface::class)->getKey());
+        self::assertSame($key, $encrypter->getKey());
+        self::assertSame($key, $container->get(EncryptionInterface::class)->getKey());
     }
 
     public function testExceptionKey(): void
@@ -79,9 +71,6 @@ class EncrypterFactoryTest extends TestCase
         echo $factory->getKey();
     }
 
-    /**
-     * @covers \Spiral\Encrypter\EncrypterFactory::generateKey
-     */
     public function testGenerateKey(): void
     {
         $key = Key::CreateNewRandomKey()->saveToAsciiSafeString();
@@ -90,6 +79,6 @@ class EncrypterFactoryTest extends TestCase
             'key' => $key,
         ]));
 
-        $this->assertNotSame($key, $manager->generateKey());
+        self::assertNotSame($key, $manager->generateKey());
     }
 }
