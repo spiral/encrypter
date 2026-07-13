@@ -7,4 +7,6 @@ namespace Spiral\Encrypter\Exception;
 /**
  * Error while data decryption.
  */
-class DecryptException extends EncrypterException {}
+class DecryptException extends EncrypterException
+{
+}

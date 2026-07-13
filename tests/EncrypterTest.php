@@ -10,37 +10,39 @@ use Spiral\Encrypter\Encrypter;
 use Spiral\Encrypter\Exception\DecryptException;
 use Spiral\Encrypter\Exception\EncrypterException;
 
-#[\PHPUnit\Framework\Attributes\CoversClass(\Spiral\Encrypter\Encrypter::class)]
-final class EncrypterTest extends TestCase
+class EncrypterTest extends TestCase
 {
     public function testImmutable(): void
     {
         $encrypter = new Encrypter($keyA = Key::CreateNewRandomKey()->saveToAsciiSafeString());
         $new = $encrypter->withKey($keyB = Key::CreateNewRandomKey()->saveToAsciiSafeString());
 
-        self::assertNotSame($encrypter, $new);
+        $this->assertNotSame($encrypter, $new);
 
-        self::assertEquals($keyA, $encrypter->getKey());
-        self::assertEquals($keyB, $new->getKey());
+        $this->assertEquals($keyA, $encrypter->getKey());
+        $this->assertEquals($keyB, $new->getKey());
     }
 
+    /**
+     * @covers \Spiral\Encrypter\Encrypter::encrypt
+     */
     public function testEncryption(): void
     {
         $encrypter = new Encrypter(Key::CreateNewRandomKey()->saveToAsciiSafeString());
 
         $encrypted = $encrypter->encrypt('test string');
-        self::assertNotSame('test string', $encrypted);
-        self::assertEquals('test string', $encrypter->decrypt($encrypted));
+        $this->assertNotEquals('test string', $encrypted);
+        $this->assertEquals('test string', $encrypter->decrypt($encrypted));
 
         $encrypter = $encrypter->withKey(Key::CreateNewRandomKey()->saveToAsciiSafeString());
 
         $encrypted = $encrypter->encrypt('test string');
-        self::assertNotSame('test string', $encrypted);
-        self::assertEquals('test string', $encrypter->decrypt($encrypted));
+        $this->assertNotEquals('test string', $encrypted);
+        $this->assertEquals('test string', $encrypter->decrypt($encrypted));
 
         $encrypted = $encrypter->encrypt('test string');
-        self::assertNotSame('test string', $encrypted);
-        self::assertEquals('test string', $encrypter->decrypt($encrypted));
+        $this->assertNotEquals('test string', $encrypted);
+        $this->assertEquals('test string', $encrypter->decrypt($encrypted));
     }
 
     public function testBadData(): void
@@ -50,8 +52,8 @@ final class EncrypterTest extends TestCase
         $encrypter = new Encrypter(Key::CreateNewRandomKey()->saveToAsciiSafeString());
 
         $encrypted = $encrypter->encrypt('test string');
-        self::assertNotSame('test string', $encrypted);
-        self::assertEquals('test string', $encrypter->decrypt($encrypted));
+        $this->assertNotEquals('test string', $encrypted);
+        $this->assertEquals('test string', $encrypter->decrypt($encrypted));
 
         $encrypter->decrypt('badData.' . $encrypted);
     }
@@ -60,7 +62,7 @@ final class EncrypterTest extends TestCase
     {
         $this->expectException(EncrypterException::class);
 
-        new Encrypter('bad-key');
+        $encrypter = new Encrypter('bad-key');
     }
 
     public function testBadWithKey(): void
@@ -68,6 +70,6 @@ final class EncrypterTest extends TestCase
         $this->expectException(EncrypterException::class);
 
         $encrypter = new Encrypter(Key::CreateNewRandomKey()->saveToAsciiSafeString());
-        $encrypter->withKey('bad-key');
+        $encrypter = $encrypter->withKey('bad-key');
     }
 }
