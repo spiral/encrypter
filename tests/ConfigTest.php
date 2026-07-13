@@ -7,14 +7,14 @@ namespace Spiral\Tests\Encrypter;
 use PHPUnit\Framework\TestCase;
 use Spiral\Encrypter\Config\EncrypterConfig;
 
-class ConfigTest extends TestCase
+final class ConfigTest extends TestCase
 {
     public function testKey(): void
     {
         $config = new EncrypterConfig([
-            'key' => 'abc'
+            'key' => 'abc',
         ]);
 
-        $this->assertSame('abc', $config->getKey());
+        self::assertSame('abc', $config->getKey());
     }
 }

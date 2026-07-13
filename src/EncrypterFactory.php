@@ -20,9 +20,8 @@ use Spiral\Encrypter\Exception\EncrypterException;
 final class EncrypterFactory implements InjectorInterface, EncryptionInterface
 {
     public function __construct(
-        private readonly EncrypterConfig $config
-    ) {
-    }
+        private readonly EncrypterConfig $config,
+    ) {}
 
     /**
      * @codeCoverageIgnore
@@ -52,7 +51,7 @@ final class EncrypterFactory implements InjectorInterface, EncryptionInterface
         return new Encrypter($this->getKey());
     }
 
-    public function createInjection(\ReflectionClass $class, string $context = null): EncrypterInterface
+    public function createInjection(\ReflectionClass $class, ?string $context = null): EncrypterInterface
     {
         return $this->getEncrypter();
     }
